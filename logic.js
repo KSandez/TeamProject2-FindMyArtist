@@ -39,7 +39,7 @@ var myMap = L.map("map", {
 
 function optionChanged(value) {
 
-    const color_list = ['red','blue','yellow','purple','orange','green','blueviolet','brown','pink','aqua','royalblue','cyan','gold','silver']
+    const color_list = ['red','blue','yellow','purple','orange','green','blueviolet','Chartreuse ','pink','aqua','royalblue','cyan','gold','lime']
 
     var img_artist = value.replace(" ", "").toLowerCase();
     d3.select('#artist-bar').attr("src","assets/images/Bars/" + img_artist + ".png")
@@ -74,94 +74,31 @@ function optionChanged(value) {
                     {
                         color: "black", // outline stroke
                         fillColor: color_list[i], // fill
-                        fillOpacity: 0.75,
-                        radius: 10000
+                        fillOpacity: 0.50,
+                        radius: 40000
                     })
                    .bindPopup(`<b>Artist:</b><br>${artistName[k]}<br><b>Event:<br></b>${eventName[k]}`)
                 .addTo(myMap)
             }
 
-           
-
-
         }
-        
-        
     }
     console.log(overlayMarkers)
-
-
-}
-//
-
-/*
-var overlayMarkers = [];
-var finalCoor = [];
-var eventNames = [];
-var city = [];
-
-// for (var r = 0; r <info.length; r++) {
-//     var artistArray = info[r].Name;
-//     artistName.push(artistArray[r].Name)
-// console.log(artistArray[r]);
-// console.log("********************************************************"); 
-
-// for (var q = 0; q < artistArray.length; q++){
-//     var artistName=[]
-//     artistName.push(artistArray[q].Name)
-// }
-// console.log(artistName[q]);
-// console.log("********************************************************");
-// }
-
-var artistOne = []; 
-
-for (var a = 0; a < info.length; a++) {
-    artistOne.push(info[a].Name)
 }
 
-console.log(artistOne)
-console.log("*******************************************************")
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
 
-var overlayMarkers = [];
-var finalCoor = [];
-var eventNames = [];
-for (var i = 0; i < info.length; i++) {
-    var newArray = info[i].Events;
-    console.log(info[i].Name);
-    console.log("********************************************************");
-    console.log(newArray)
-    for (var j = 0; j < newArray.length; j++) {
-        //console.log(newArray[j].Latitude);
-        var coordinates = [] // [[1,3], [3,4]]
-        coordinates.push(parseFloat(newArray[j].Latitude))
-        coordinates.push(parseFloat(newArray[j].Longitude))
-        finalCoor.push(coordinates);
-        eventNames.push(newArray[j].EventName)
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
     }
-    // console.log(newArray[j].Event);
 }
-console.log(finalCoor);
-console.log(artistOne)
 
-;
-for (var k = 0; k < finalCoor.length; k++) {
-    // Push data to empty overlayMarkers list
-    overlayMarkers.push(L.circle([finalCoor[k][1], finalCoor[k][0]],
-        {
-            color: "black", // outline stroke
-            fillColor: "lightblue", // fill
-            fillOpacity: 0.75,
-            radius: 5500
-        }
-    ).bindPopup(`<b>Name: ${artistOne[0]}<hr></b>${eventNames[k]}`))}
-
-
-var overlayLayer = L.layerGroup(overlayMarkers);
-
-var overlayMaps = {'Concert Markers': overlayLayer};
-
-// Add Control
-L.control.layers(baseMaps, overlayMaps).addTo(myMap);
-*/
-
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
